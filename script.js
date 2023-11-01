@@ -1,12 +1,23 @@
 function volume_sphere() {
-    var radius = document.getElementById("radius").value;
-    var volume = (4/3) * Math.PI * Math.pow(radius, 3);
-    document.getElementById("volume").value = volume.toFixed(2);
+
+  let radius = parseFloat(document.getElementById("radius").value);
+
+  if (isNaN(radius) || radius <= 0) {
+    document.getElementById("volume").value = "NaN";
+    return; // Exit the function
+  }
+
+
+ const volume = (4 / 3) * Math.PI * Math.pow(radius, 3);
+
+	const formattedVolume = volume.toFixed(4);
+
+
+    document.getElementById("volume").value = formattedVolume;
 }
 
-window.onload = function() {
-    document.getElementById("MyForm").addEventListener("submit", function(event){
-        event.preventDefault();
-        volume_sphere();
-    });
+
+document.getElementById('MyForm').onsubmit = function (event) {
+  event.preventDefault(); 
+  volume_sphere(); 
 };
